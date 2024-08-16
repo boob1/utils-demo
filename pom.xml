@@ -13,6 +13,7 @@
   <modules>
     <module>sensitive-util</module>
     <module>thread-utils</module>
+    <module>pulsar-agent</module>
   </modules>
 
   <parent>

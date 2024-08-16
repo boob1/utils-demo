@@ -12,6 +12,7 @@
 
   <modules>
     <module>sensitive-util</module>
+    <module>thread-utils</module>
   </modules>
 
   <parent>

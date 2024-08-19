@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel 操作</title>
+</head>
+<body>
+<h1>Excel 操作</h1>
+<button onclick="exportData()">导出数据</button>
+<button onclick="importData()">导入数据</button>
+
+<script>
+  function exportData() {
+    fetch('/export')
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+    })
+    .catch(error => {
+      alert('导出数据失败: 'rror);
+    });
+  }
+
+  function importData() {
+    fetch('/import')
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+    })
+    .catch(error => {
+      alert('导入数据失败: 'rror);
+    });
+  }
+</script>
+</body>
+</html>

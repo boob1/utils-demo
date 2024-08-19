@@ -14,6 +14,7 @@
     <module>sensitive-util</module>
     <module>thread-utils</module>
     <module>pulsar-agent</module>
+    <module>easyExcel-expert-util</module>
   </modules>
 
   <parent>

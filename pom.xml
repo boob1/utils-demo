@@ -11,10 +11,10 @@
   <description>first-parent</description>
 
   <modules>
-    <module>sensitive-util</module>
+    <module>sensitive-util-0001</module>
     <module>thread-utils</module>
     <module>pulsar-agent</module>
-    <module>easyExcel-expert-util</module>
+    <module>easyExcel-expert-util-0002</module>
   </modules>
 
   <parent>

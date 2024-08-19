@@ -9,7 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>sensitive-util</artifactId>
+  <artifactId>sensitive-util-0001</artifactId>
 
 <dependencies>
   <!--jackson依赖-->

@@ -16,6 +16,7 @@
     <module>pulsar-agent</module>
     <module>easyExcel-expert-util-0002</module>
     <module>easyExcel-import-0003</module>
+    <module>spring-retry-0004</module>
   </modules>
 
   <parent>

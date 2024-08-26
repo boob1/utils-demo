@@ -1,0 +1,41 @@
+server:
+  port: 8089
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/hongda?serverTimezone=GMT%2B8&useUnicode=true&useSSL=false&characterEncoding=utf-8&rewriteBatchedStatements=true
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id #主键策略 雪花算法
+      update-strategy: not_null #修改时，只修改不为空的字段
+      logic-delete-field: deleted  #设置逻辑删除的表字段
+      logic-delete-value: 1  #删除的值设置为1
+      logic-not-delete-value: 0 #未删除的值设置为0
+
+#日志配置
+logging:
+  level:
+    com.hongda: debug
+
+#swagger 配置
+knife4j:
+  enable: true
+  openapi:
+    title: 用户管理接口管理文档
+    description: "用户管理接口管理文档"
+    email: 102458249@qq.com
+    concat: 波哥
+    url: https://github.com/102458249/hongda
+    version: 1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.hongda.controller

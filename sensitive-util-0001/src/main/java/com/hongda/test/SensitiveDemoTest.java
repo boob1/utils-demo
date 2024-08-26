@@ -1,4 +1,4 @@
-package com.hongda;
+package com.hongda.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

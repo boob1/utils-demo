@@ -4,9 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SensitiveApplication {
+public class CheckExceptionApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(SensitiveApplication.class, args);
+    SpringApplication.run(CheckExceptionApplication.class, args);
+    System.out.println("Hello world!");
   }
 }

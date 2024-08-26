@@ -1,5 +1,6 @@
 package com.hongda.domain.vo;
 
+import com.hongda.domain.enums.UserStatus;
 import java.util.Date;
 import lombok.Data;
 
@@ -20,7 +21,7 @@ public class UserVo {
 
   private String info;
 
-  private Integer status;
+  private UserStatus status;
 
   private String balance;
 

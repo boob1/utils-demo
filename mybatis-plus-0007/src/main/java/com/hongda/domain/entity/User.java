@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.hongda.domain.enums.UserStatus;
 import java.util.Date;
 import java.util.List;
 import lombok.Data;
@@ -13,7 +15,7 @@ import lombok.Data;
  * @Author lyb
  * @Date 2024/8/24 23:09
  */
-@TableName("user")
+@TableName(value="user", autoResultMap = true)
 @Data
 public class User {
   @TableId(value = "id",type= IdType.ASSIGN_ID)
@@ -25,9 +27,10 @@ public class User {
 
   private String phone;
 
-  private String info;
+  @TableField(typeHandler = JacksonTypeHandler.class)
+  private UserInfo info;
 
-  private Integer status;
+  private UserStatus status;
 
   private String balance;
 

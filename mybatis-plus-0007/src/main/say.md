@@ -117,3 +117,22 @@ mybatis-plus的servive方法：批量保存：saveBatch其实还是一条一条�
 @JsonValue 加在枚举字段上，指定返回的是名字还是状态给前端。
 
 
+# 17.mybatis-plus的JSON处理
+![img.png](resources/images/img_18.png)
+
+## 17.1步骤一：创建子对象UserInfo.java  
+## 17.2步骤二：在User.java中添加UserInfo对象  ;  @TableField(typeHandler = JacksonTypeHandler.class)  
+
+## 17.3步骤三开启映射：@TableName(value="user", autoResultMap = true)  
+
+# 18.mybatisPlus提供的内置插件
+![img.png](resources/images/img_19.png)
+
+## 18.1 分页插件插件：
+ ### 配置
+![img.png](resources/images/img_21.png)
+
+ ### 应用
+![img.png](resources/images/img_20.png)
+
+## 18.2接受参数包装

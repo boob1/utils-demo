@@ -1,8 +1,11 @@
 package com.hongda.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hongda.domain.dto.PageDTO;
 import com.hongda.domain.dto.UserFormDTO;
 import com.hongda.domain.entity.User;
+import com.hongda.domain.query.UserQuery;
 import com.hongda.domain.vo.UserVo;
 import com.hongda.service.UserService;
 import io.swagger.annotations.Api;
@@ -57,5 +60,13 @@ public class UserController {
     List<User> users = userService.listByIds(id);
     return BeanUtil.copyToList(users, UserVo.class);
   }
+
+
+  @GetMapping("/queryPage")
+  @ApiOperation(value = "查询用户")
+  public PageDTO<UserVo> queryPage(UserQuery userQuery){
+    return userService.queryPage(userQuery);
+  }
+
 
 }

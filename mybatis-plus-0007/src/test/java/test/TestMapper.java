@@ -33,7 +33,7 @@ public class TestMapper {
     user.setPassword("123456");
     user.setPhone("12345678901");
     user.setCreateTime(new Date());
-    user.setInfo(UserInfo.of(18,"男","我是一个测试用户"));
+/*    user.setInfo(UserInfo.of(18,"男","我是一个测试用户"));*/
     user.setBalance("333");
     userMapper.insert(user);
 

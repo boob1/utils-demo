@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
  private final UserService userService;
   @ApiOperation(value = "保存用户")
-  @PostMapping
+  @PostMapping("/save")
   public void saveUser(@RequestBody UserFormDTO userFormDTO){
     //DTO 转化PO
     User user = BeanUtil.copyProperties(userFormDTO, User.class);

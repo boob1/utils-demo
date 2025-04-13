@@ -20,6 +20,7 @@
     <module>progress-0005</module>
     <module>check-exception-0006</module>
     <module>mybatis-plus-0007</module>
+    <module>springboot-lyb</module>
 
   </modules>
 

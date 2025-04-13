@@ -27,8 +27,8 @@ public class User {
 
   private String phone;
 
-  @TableField(typeHandler = JacksonTypeHandler.class)
-  private UserInfo info;
+/*  @TableField(typeHandler = JacksonTypeHandler.class)
+  private UserInfo info;*/
 
   private UserStatus status;
 

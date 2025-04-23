@@ -1,6 +1,6 @@
 package com.hongda.springbootlyb.controller;
 
-import com.hongda.springbootlyb.pojo.ResponseMessage;
+import com.hongda.springbootlyb.pojo.page.ResponseMessage;
 import com.hongda.springbootlyb.pojo.User;
 import com.hongda.springbootlyb.pojo.dto.UserDTO;
 import com.hongda.springbootlyb.service.IUserService;
@@ -28,7 +28,7 @@ private IUserService userService;
   @PostMapping
   public ResponseMessage addUser(@Validated @RequestBody UserDTO userDTO){
     User user = userService.addUser(userDTO);
-    return ResponseMessage.success(user);
+    return ResponseMessage.success(user,"成功");
   }
 
 }

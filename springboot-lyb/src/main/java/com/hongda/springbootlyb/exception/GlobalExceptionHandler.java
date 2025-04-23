@@ -1,18 +1,17 @@
 package com.hongda.springbootlyb.exception;
 
-import com.hongda.springbootlyb.pojo.ErrorResponse;
-import com.hongda.springbootlyb.pojo.ResponseMessage;
+import com.hongda.springbootlyb.pojo.page.ResponseMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.ConstraintViolationException;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -26,17 +25,18 @@ public class GlobalExceptionHandler {
   Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   // 处理表单验证异常
-  // 处理表单验证异常
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
-    List<String> errors = ex.getBindingResult()
-        .getFieldErrors()
-        .stream()
-        .map(error -> error.getField() + ": " + error.getDefaultMessage())
-        .collect(Collectors.toList());
 
-    ErrorResponse response = new ErrorResponse("Validation Failed", errors);
-    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+  @ResponseBody
+  @ExceptionHandler({MethodArgumentNotValidException.class})
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseMessage handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
+    BindingResult bindingResult = ex.getBindingResult();
+    StringBuffer sb = new StringBuffer("校验失败：");
+    for(FieldError fieldError :bindingResult.getFieldErrors()){
+      sb.append(fieldError.getField()).append(fieldError.getDefaultMessage()).append(",");
+    }
+    String msg = sb.toString();
+    return  ResponseMessage.error(500,msg);
   }
 
   @ExceptionHandler(Exception.class) //什么异常统一处理

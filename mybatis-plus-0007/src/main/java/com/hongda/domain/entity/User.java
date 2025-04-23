@@ -15,10 +15,11 @@ import lombok.Data;
  * @Author lyb
  * @Date 2024/8/24 23:09
  */
-@TableName(value="user", autoResultMap = true)
+@TableName(value = "user", autoResultMap = true)
 @Data
 public class User {
-  @TableId(value = "id",type= IdType.ASSIGN_ID)
+
+  @TableId(value = "id", type = IdType.ASSIGN_ID)
   private Long id;
 
   private String username;
@@ -40,8 +41,6 @@ public class User {
 
   @TableField(exist = false)
   private List<MyAddress> addressList;
-
-
 
 
 }

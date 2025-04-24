@@ -1,6 +1,6 @@
 package com.hongda.springbootlyb.service.impl;
 
-import com.hongda.springbootlyb.mapper.UserRepository;
+import com.hongda.springbootlyb.dao.UserRepository;
 import com.hongda.springbootlyb.pojo.User;
 import com.hongda.springbootlyb.pojo.dto.UserDTO;
 import com.hongda.springbootlyb.service.IUserService;

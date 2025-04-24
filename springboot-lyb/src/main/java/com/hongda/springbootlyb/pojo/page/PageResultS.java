@@ -1,5 +1,7 @@
 package com.hongda.springbootlyb.pojo.page;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @Author lyb
  * @Date 2025/4/23 11:58
  */
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class PageResultS<T> {
 
   private List<T> list;

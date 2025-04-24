@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hongda.springbootlyb.dao.EvaluationRulesMapper">
+  <resultMap id="EvaluationRulesResultMap" type="com.hongda.springbootlyb.pojo.EvaluationRules">
+    <!-- 主键映射 -->
+    <id property="EVALUATIONRULES_ID" column="EVALUATIONRULES_ID" />
+    <!-- 其他字段映射 -->
+    <result property="EVALUATIONRULES_PID" column="EVALUATIONRULES_PID" />
+    <result property="OWNERUNIT_ID" column="OWNERUNIT_ID" />
+    <result property="OWNERUNIT_NAME" column="OWNERUNIT_NAME" />
+    <result property="PROVINCE_CODE" column="PROVINCE_CODE" />
+    <result property="EVALUATIONRULES_TYPE" column="EVALUATIONRULES_TYPE" />
+    <result property="EVALUATION_DEPARTMENT_ID" column="EVALUATION_DEPARTMENT_ID" />
+    <result property="EVALUATION_DEPARTMENT" column="EVALUATION_DEPARTMENT" />
+    <result property="EVALUATION_ITEMS" column="EVALUATION_ITEMS" />
+    <result property="EVALUATIONRULES_CONTENT" column="EVALUATIONRULES_CONTENT" />
+    <result property="STANDARD_SCORE" column="STANDARD_SCORE" />
+    <result property="EVALUATION_RATIO" column="EVALUATION_RATIO" />
+    <result property="EVALUATIONRULES_INDEX" column="EVALUATIONRULES_INDEX" />
+    <result property="EVALUATIONRULES_STATE" column="EVALUATIONRULES_STATE" />
+    <result property="STAFF_ID" column="STAFF_ID" />
+    <result property="STAFF_NAME" column="STAFF_NAME" />
+    <result property="OPERATE_DATE" column="OPERATE_DATE" />
+    <result property="EVALUATIONRULES_DESC" column="EVALUATIONRULES_DESC" />
+  </resultMap>
+
+  <select id="findEditData" resultMap="EvaluationRulesResultMap">
+    SELECT * FROM T_EVALUATIONRULES
+    <where>
+      <if test="evaluationrulesState != null">
+        AND EVALUATIONRULES_STATE = #{evaluationrulesState}
+      </if>
+      <if test="evaluationDepartmentIds != null and evaluationDepartmentIds.size() > 0">
+        AND EVALUATION_DEPARTMENT_ID IN
+        <foreach item="item" index="index" collection="evaluationDepartmentIds"
+          open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+      <if test="ownerunitId != null">
+        AND OWNERUNIT_ID = #{ownerunitId}
+      </if>
+      <if test="provinceCode != null">
+        AND PROVINCE_CODE = #{provinceCode}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,4 +1,4 @@
-package com.hongda.springbootlyb.mapper;
+package com.hongda.springbootlyb.dao;
 
 import com.hongda.springbootlyb.pojo.AutoStatistics;
 import org.springframework.data.domain.Page;

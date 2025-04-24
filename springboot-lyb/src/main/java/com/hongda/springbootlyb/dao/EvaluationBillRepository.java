@@ -1,4 +1,4 @@
-package com.hongda.springbootlyb.mapper;
+package com.hongda.springbootlyb.dao;
 
 import com.hongda.springbootlyb.pojo.EvaluationBill;
 import org.springframework.data.repository.CrudRepository;

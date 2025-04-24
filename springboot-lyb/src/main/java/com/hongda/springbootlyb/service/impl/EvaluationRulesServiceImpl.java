@@ -1,6 +1,9 @@
 package com.hongda.springbootlyb.service.impl;
 
-import com.hongda.springbootlyb.mapper.EvaluationRulesRepository;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hongda.springbootlyb.dao.EvaluationRulesMapper;
+import com.hongda.springbootlyb.dao.EvaluationRulesRepository;
 import com.hongda.springbootlyb.pojo.EvaluationRules;
 import com.hongda.springbootlyb.pojo.dto.EvaluationRulesDTO;
 import com.hongda.springbootlyb.pojo.page.EvaluationRulesPage;
@@ -28,6 +31,9 @@ public class EvaluationRulesServiceImpl implements IEvaluationRulesService {
 
   @Autowired
   EvaluationRulesRepository rulesRepository;
+
+  @Autowired
+  EvaluationRulesMapper evaluationRulesMapper;
 
     @Override
   public EvaluationRulesVO addEvaluationRules(EvaluationRulesDTO evaluationRulesDTO) {
@@ -93,9 +99,6 @@ public class EvaluationRulesServiceImpl implements IEvaluationRulesService {
       throw new IllegalArgumentException("分页参数不合法");
     }
 
-    // 构造分页参数
-    Pageable pageable = PageRequest.of(pagePara.getPageIndex() - 1, pagePara.getPageSize());
-
     try {
       // 将逗号拼接的字符串转换为 Long 类型的列表
       List<Integer> evaluationDepartmentIds = Arrays.stream(
@@ -104,21 +107,26 @@ public class EvaluationRulesServiceImpl implements IEvaluationRulesService {
           .collect(Collectors.toList());
 
       // 调用 Repository 方法进行分页查询
-      Page<EvaluationRules> evaluationLevels = rulesRepository.findEditData(
+      List<EvaluationRules> evaluationLevels = evaluationRulesMapper.findEditData(
           pagePara.getSearchParameter().getEVALUATIONRULES_STATE(),
           evaluationDepartmentIds, pagePara.getSearchParameter().getOWNERUNIT_ID(),
-          pagePara.getSearchParameter().getPROVINCE_CODE(), pageable);
+          pagePara.getSearchParameter().getPROVINCE_CODE());
+
+      PageHelper.startPage(pagePara.getPageIndex(), pagePara.getPageSize());
+
+      // 获取分页信息
+      PageInfo<EvaluationRules> pageInfo = new PageInfo<>(evaluationLevels);
 
       // 创建 VO 列表
-      List<EvaluationRulesVO> voList = evaluationLevels.getContent().stream()
+      List<EvaluationRulesVO> voList = pageInfo.getList().stream()
           .map(this::convertToVO)
           .collect(Collectors.toList());
 
       // 构造分页结果
       PageResultS<EvaluationRulesVO> pageResult = new PageResultS<>();
-      pageResult.setTotalCount(evaluationLevels.getTotalElements());
-      pageResult.setPageIndex(evaluationLevels.getNumber() + 1); // 页码从 1 开始
-      pageResult.setPageSize(evaluationLevels.getSize());
+      pageResult.setTotalCount(pageInfo.getTotal());
+      pageResult.setPageIndex(pageInfo.getPages()); // 页码从 1 开始
+      pageResult.setPageSize(pagePara.getPageSize());
       pageResult.setList(voList);
 
       return pageResult;
@@ -143,6 +151,7 @@ public class EvaluationRulesServiceImpl implements IEvaluationRulesService {
   private EvaluationRulesVO convertToVO(EvaluationRules evaluationRules) {
     EvaluationRulesVO vo = new EvaluationRulesVO();
     BeanUtils.copyProperties(evaluationRules, vo);
+    vo.setUSER_ID(4366);
     return vo;
   }
 }

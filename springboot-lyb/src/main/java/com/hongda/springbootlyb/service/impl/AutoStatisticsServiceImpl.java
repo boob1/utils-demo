@@ -1,22 +1,15 @@
 package com.hongda.springbootlyb.service.impl;
 
-import com.hongda.springbootlyb.mapper.AutoStatisticsRepository;
-import com.hongda.springbootlyb.mapper.EvaluationLevelRepository;
+import com.hongda.springbootlyb.dao.AutoStatisticsRepository;
 import com.hongda.springbootlyb.pojo.AutoStatistics;
-import com.hongda.springbootlyb.pojo.EvaluationLevel;
 import com.hongda.springbootlyb.pojo.dto.AutoStatisticsDTO;
-import com.hongda.springbootlyb.pojo.page.PagePara;
 import com.hongda.springbootlyb.pojo.page.PageResultS;
 import com.hongda.springbootlyb.pojo.vo.AutoStatisticsVO;
-import com.hongda.springbootlyb.pojo.vo.EvaluationLevelVO;
 import com.hongda.springbootlyb.service.IAutoStatisticsService;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

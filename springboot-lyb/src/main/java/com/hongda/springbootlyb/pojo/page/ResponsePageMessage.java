@@ -1,5 +1,7 @@
 package com.hongda.springbootlyb.pojo.page;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.hongda.springbootlyb.pojo.page.PageResultS;
 import com.hongda.springbootlyb.pojo.page.ResponseMessage;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
  * @Author lyb
  * @Date 2025/4/23 11:57
  */
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class ResponsePageMessage<T> {
   private Integer Result_Code;
   private String Result_Desc;

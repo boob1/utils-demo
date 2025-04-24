@@ -1,7 +1,7 @@
 package com.hongda.springbootlyb.service.impl;
 
-import com.hongda.springbootlyb.mapper.SupplierEvaluationInfoRepository;
-import com.hongda.springbootlyb.mapper.SupplierEvaluationRepository;
+import com.hongda.springbootlyb.dao.SupplierEvaluationInfoRepository;
+import com.hongda.springbootlyb.dao.SupplierEvaluationRepository;
 import com.hongda.springbootlyb.pojo.SupplierEvaluation;
 import com.hongda.springbootlyb.pojo.SupplierEvaluationInfo;
 import com.hongda.springbootlyb.pojo.dto.SupplierEvaluationDTO;

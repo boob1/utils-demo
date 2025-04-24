@@ -32,7 +32,7 @@ public class EvaluationLevelController {
     return ResponseMessage.success(levelVO,"同步成功");
   }
 
-  @PostMapping("/getEVALUATIONLEVELList")
+  @PostMapping("/GetEVALUATIONLEVELList")
   public ResponsePageMessage getEVALUATIONLEVELList(@RequestBody PagePara pagePara){
     PageResultS<EvaluationLevelVO> user = evaluationLevelService.findByType(pagePara);
     return ResponsePageMessage.success(user,"查询成功");

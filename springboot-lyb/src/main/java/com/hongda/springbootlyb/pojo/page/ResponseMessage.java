@@ -1,5 +1,7 @@
 package com.hongda.springbootlyb.pojo.page;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -7,6 +9,7 @@ import org.springframework.http.HttpStatus;
  * @Author lyb
  * @Date 2025/4/13 22:27
  */
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class ResponseMessage<T> {
 
 

@@ -1,15 +1,14 @@
-package com.hongda.springbootlyb.service;
+package com.hongda.springbootlyb.service.impl;
 
 import com.hongda.springbootlyb.mapper.EvaluationLevelRepository;
-import com.hongda.springbootlyb.mapper.UserRepository;
 import com.hongda.springbootlyb.pojo.EvaluationLevel;
 import com.hongda.springbootlyb.pojo.dto.EvaluationLevelDTO;
-import com.hongda.springbootlyb.pojo.dto.UserDTO;
 import com.hongda.springbootlyb.pojo.page.PagePara;
 import com.hongda.springbootlyb.pojo.page.PageResultS;
 import com.hongda.springbootlyb.pojo.vo.EvaluationLevelVO;
-import java.util.Collections;
+import com.hongda.springbootlyb.service.IEvaluationLevelService;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
- * @Description
+ * @Description 考评等级表业务处理
  * @Author lyb
  * @Date 2025/4/23 13:41
  */
@@ -39,7 +38,7 @@ public class EvaluationLevelServiceImpl implements IEvaluationLevelService {
 
     try {
       // 调用 Repository 方法进行分页查询
-      Page<EvaluationLevel> evaluationLevels = levelRepository.findByEvaluationLevelType(1000, pageable);
+      Page<EvaluationLevel> evaluationLevels = levelRepository.findByEvaluationLevelType(pagePara.getSearchParameter().getEVALUATIONLEVEL_TYPE(), pageable);
 
       // 创建 VO 列表
       List<EvaluationLevelVO> voList = evaluationLevels.getContent().stream()
@@ -77,5 +76,17 @@ public class EvaluationLevelServiceImpl implements IEvaluationLevelService {
     EvaluationLevelVO levelVO = new EvaluationLevelVO();
     BeanUtils.copyProperties(evaluationLevelNew, levelVO);
     return levelVO;
+  }
+
+  @Override
+  public EvaluationLevelVO findById(Integer id) {
+    Optional<EvaluationLevel> repository = levelRepository.findById(id);
+    if (repository.isPresent()) {
+      EvaluationLevel level = repository.get();
+      EvaluationLevelVO levelVO = new EvaluationLevelVO();
+      BeanUtils.copyProperties(level, levelVO);
+      return levelVO;
+    }
+    return null;
   }
 }

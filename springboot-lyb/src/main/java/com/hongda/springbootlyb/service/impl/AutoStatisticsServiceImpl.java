@@ -1,4 +1,4 @@
-package com.hongda.springbootlyb.service;
+package com.hongda.springbootlyb.service.impl;
 
 import com.hongda.springbootlyb.mapper.AutoStatisticsRepository;
 import com.hongda.springbootlyb.mapper.EvaluationLevelRepository;
@@ -9,17 +9,27 @@ import com.hongda.springbootlyb.pojo.page.PagePara;
 import com.hongda.springbootlyb.pojo.page.PageResultS;
 import com.hongda.springbootlyb.pojo.vo.AutoStatisticsVO;
 import com.hongda.springbootlyb.pojo.vo.EvaluationLevelVO;
+import com.hongda.springbootlyb.service.IAutoStatisticsService;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import utils.TreeBuilder;
+import utils.TreeNode;
 
 /**
- * @Description
+ * @Description 处理自定义统计归口表业务
  * @Author lyb
  * @Date 2025/4/23 17:06
  */
@@ -41,7 +51,7 @@ public class AutoStatisticsServiceImpl implements IAutoStatisticsService {
   }
 
   @Override
-  public PageResultS<AutoStatisticsVO> findByData(Integer autostatisticsType, Integer autostatisticsState) {
+  public PageResultS<TreeNode> findByData(Integer autostatisticsType, Integer autostatisticsState) {
     // 构造分页参数
     Pageable pageable = PageRequest.of(0, 99999);
 
@@ -55,14 +65,26 @@ public class AutoStatisticsServiceImpl implements IAutoStatisticsService {
           .map(this::convertToVO)
           .collect(Collectors.toList());
 
+      // 子节点
+      List<Map<String, Object>> dataList = voList.stream()
+          .filter(Objects::nonNull) // 过滤掉 null 元素，避免 NullPointerException
+          .map(vo -> {
+            Map<String, Object> beanMap = BeanMap.create(vo);
+            // 如果需要线程安全的 Map，可以将 beanMap 转换为 ConcurrentHashMap
+            return beanMap;
+          })
+          .collect(Collectors.toList());
+
+      // 构建树
+      List<TreeNode> tree = TreeBuilder.buildTree(dataList);
 
 
       // 构造分页结果
-      PageResultS<AutoStatisticsVO> pageResult = new PageResultS<>();
+      PageResultS<TreeNode> pageResult = new PageResultS<>();
       pageResult.setTotalCount(evaluationLevels.getTotalElements());
       pageResult.setPageIndex(evaluationLevels.getNumber() + 1); // 页码从 1 开始
       pageResult.setPageSize((int)evaluationLevels.getTotalElements());
-      pageResult.setList(voList);
+      pageResult.setList(tree);
 
       return pageResult;
     } catch (Exception e) {
@@ -74,6 +96,18 @@ public class AutoStatisticsServiceImpl implements IAutoStatisticsService {
   @Override
   public void deleteById(Integer id) {
     autoStatisticsRepository.deleteById(id);
+  }
+
+  @Override
+  public AutoStatisticsVO findById(Integer id) {
+    Optional<AutoStatistics> repository = autoStatisticsRepository.findById(id);
+    if (repository.isPresent()) {
+      AutoStatistics level = repository.get();
+      AutoStatisticsVO levelVO = new AutoStatisticsVO();
+      BeanUtils.copyProperties(level, levelVO);
+      return levelVO;
+    }
+    return null;
   }
 
   private AutoStatisticsVO convertToVO(AutoStatistics autoStatistics) {

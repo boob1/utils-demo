@@ -1,4 +1,4 @@
-package com.hongda.springbootlyb.dao;
+package com.hongda.springbootlyb.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hongda.springbootlyb.pojo.EvaluationRules;

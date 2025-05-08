@@ -2,7 +2,7 @@ package com.hongda.springbootlyb.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hongda.springbootlyb.dao.EvaluationRulesMapper;
+import com.hongda.springbootlyb.dao.mapper.EvaluationRulesMapper;
 import com.hongda.springbootlyb.dao.EvaluationRulesRepository;
 import com.hongda.springbootlyb.pojo.EvaluationRules;
 import com.hongda.springbootlyb.pojo.dto.EvaluationRulesDTO;

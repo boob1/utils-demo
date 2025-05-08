@@ -1,0 +1,40 @@
+
+
+spring:
+  application:
+    name: knife4j-swagger-tool-0010
+
+server:
+  port: 8085
+
+knife4j:
+  ## 提供的增强功能
+  enable: true
+  ## 配置自定义文档显示
+  documents:
+    - group: default
+      name: 其他文档
+      locations: classpath:markdown/*
+  ## 访问权限控制 查看接口需要登录密码和账号
+  basic:
+    enable: true
+    username: admin
+    password: 123456
+
+  setting:
+    ## 开启动态请求参数，true-开启，false-关闭； 开启的话，可以在传参数的时候添加新字段，删除原来的旧字段；
+    enable-dynamic-parameter: true
+
+##  接口排序
+springdoc:
+  swagger-ui:
+    operations-sorter: order
+  ## 路径不同的话都可以在这配置分组
+  group-configs:
+      - group: 'admin'
+        paths-to-match: '/admin/**'
+        ## 这里配置controller的同目录路径
+        packages-to-scan: com.hongda.knife4jswaggertool0010.controller
+      - group: 'common'
+        paths-to-match: '/common/**'
+        packages-to-scan: com.hongda.knife4jswaggertool0010.controller

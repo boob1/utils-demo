@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hongda.springbootlyb.dao.EvaluationRulesMapper">
+<mapper namespace="com.hongda.springbootlyb.dao.mapper.EvaluationRulesMapper">
   <resultMap id="EvaluationRulesResultMap" type="com.hongda.springbootlyb.pojo.EvaluationRules">
     <!-- 主键映射 -->
     <id property="EVALUATIONRULES_ID" column="EVALUATIONRULES_ID" />

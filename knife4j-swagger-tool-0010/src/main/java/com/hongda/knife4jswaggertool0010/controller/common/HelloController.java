@@ -39,7 +39,7 @@ public class HelloController {
   }
 
   @ApiOperation(value="新增Model接口1")
-  @ApiOperationSupport(ignoreParameters = {"uptModel.id"})
+  @ApiOperationSupport(ignoreParameters={"uptModel.id","uptModel.orderDate.id"})
   @PostMapping("/insertMode1")
   public List<UptModel> insertModel1(@ApiParam @RequestBody UptModel uptModel){
     List<UptModel> r=new ArrayList<>();

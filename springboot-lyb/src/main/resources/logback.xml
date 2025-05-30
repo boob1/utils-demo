@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" debug="false">
+  <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+  <property name="FILE_PATH" value="D:/logs/course03/demo.%d{yyyy-MM-dd}.%i.log"/>
+  <property name="MAX_HISTORY" value="15"/>
+  <property name="MAX_FILE_SIZE" value="20mb"/>
+
+<!--  <contextName>test</contextName>-->
+<!--控制台打印日志格式-->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <!--文件20M为一个文件-->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!--按照上面配置的路径保存文件-->
+      <fileNamePattern>${FILE_PATH}</fileNamePattern>
+      <!--日志保存15天-->
+      <maxHistory>${MAX_HISTORY}</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!--单个文件最大M,超过创建新的文件-->
+        <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <!--按照上面的格式配置打印日志-->
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+  <!--局部配置日志级别为DEBUG-->
+  <logger name="com.hongda.springbootlyb.dao.mapper" level="DEBUG"></logger>
+  <!--全局配置日志级别为DEBUG-->
+  <root level="DEBUG">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="FILE"/>
+  </root>
+
+  <!-- 生产环境建议调整以下日志级别为INFO -->
+  <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+  <logger name="org.apache.ibatis" level="DEBUG"/>
+</configuration>

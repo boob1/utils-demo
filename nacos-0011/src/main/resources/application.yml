@@ -1,0 +1,63 @@
+server:
+  port: 8083
+
+
+spring:
+  application:
+    name: @project.artifactId@
+    package: @project.groupId@
+    description: @project.description@
+    version: @project.version@
+  profiles:
+    active: dev
+
+
+
+# spec部分定义了应用程序的配置规范
+spec:
+  # application部分设置了应用的归属信息
+  application:
+    # group定义了应用所属的组，默认为DEFAULT_GROUP
+    group: DEFAULT_GROUP
+    # zone指定了应用所在的区域或数据中心
+    zone: IDC
+    # realm定义了应用所属的领域或业务范围
+    realm: CENTRAL
+  # nacos部分配置了Nacos服务器的相关信息
+  nacos:
+    # addr指定了Nacos服务器的地址和端口
+    addr: 127.0.0.1:8848
+    # share-id配置了共享ID，'*'表示通配符，可匹配任何共享ID
+    share-id: '*'
+
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev # 当前配置仅在test或dev环境激活时应用
+    import: optional:nacos:${spring.application.name}
+  cloud:
+    nacos:
+      discovery: # 服务发现相关配置
+        server-addr: ${spec.nacos.addr} # Nacos服务器地址
+        namespace: ${spring.profiles.active} # 使用的命名空间，根据当前激活的配置文件决定
+        prefix: ${spring.application.name} # 配置文件前缀，通常与应用名称一致
+        group: ${spec.application.zone} # 应用所属的组
+        metadata: # 服务元数据配置
+          realm: ${spec.application.realm} # 应用的领域
+          version: ${spring.application.version} # 应用版本号
+      config: # 配置中心相关配置
+        server-addr: ${spec.nacos.addr} # Nacos配置服务器地址
+        namespace: dev # 配置所在的命名空间
+        file-extension: yml # 配置文件格式
+        extension-configs: # 扩展配置列表
+          - data-id: global.yml # 全局配置文件ID
+            group: DEFAULT_GROUP # 配置文件组
+            refresh: true # 是否支持配置刷新
+          - data-id: ${spring.application.name}.yml # 应用专属配置文件ID
+            group: ${spec.application.group} # 配置文件组
+            refresh: true # 是否支持配置刷新
+

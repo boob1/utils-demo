@@ -8,6 +8,7 @@ package com.hongda.nacos0011;
 public class TestCommit {
     public static void main(String[] args) {
         System.out.println("A测试提交");
+      System.out.println("B测试提交");
     }
 
 }

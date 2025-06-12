@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.5</version>
+    <relativePath/>
+  </parent>
+  <groupId>com.hongda</groupId>
+  <artifactId>base-common</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>base-common</name>
+  <description>base-common</description>
+
+
+  <properties>
+    <!-- Site Project Version here -->
+    <version.current>1.3.8</version.current>
+
+    <!-- Standard properties -->
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <nexus.location>http://10.0.3.31:8084</nexus.location>
+  </properties>
+
+  <dependencies>
+    <!-- Spring -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>alibaba-dingtalk-service-sdk</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-core</artifactId>
+      <version>10.12</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-openfeign-core</artifactId>
+      <version>3.0.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-loadbalancer</artifactId>
+      <version>3.0.4</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- caffeine -->
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
+    </dependency>
+
+    <!-- JMX logging -->
+    <dependency>
+      <groupId>org.jolokia</groupId>
+      <artifactId>jolokia-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>7.0.1</version>
+    </dependency>
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <!-- Prometheus -->
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+    <!-- InfluxDB -->
+    <dependency>
+      <groupId>org.influxdb</groupId>
+      <artifactId>influxdb-java</artifactId>
+    </dependency>
+    <!-- Resubmit Cache https://github.com/jhalterman/expiringmap -->
+    <dependency>
+      <groupId>net.jodah</groupId>
+      <artifactId>expiringmap</artifactId>
+      <version>0.5.10</version>
+    </dependency>
+
+    <!-- Gaia Toolkit -->
+    <dependency>
+      <groupId>com.xpp.gaia</groupId>
+      <artifactId>gaia-toolkit</artifactId>
+      <version>[0.0.1,)</version>
+    </dependency>
+
+    <!-- Mybatis Plus -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-generator</artifactId>
+      <version>3.5.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>3.4.3.4</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity-engine-core</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+
+    <!-- Doc -->
+    <dependency>
+      <groupId>com.github.xiaoymin</groupId>
+      <artifactId>knife4j-spring-boot-starter</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+
+    <!-- Jedis -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>4.0.1</version>
+    </dependency>
+
+    <!-- Xxl Job -->
+    <dependency>
+      <groupId>com.xuxueli</groupId>
+      <artifactId>xxl-job-core</artifactId>
+      <version>2.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- google -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>30.1-jre</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- files -->
+    <dependency>
+      <groupId>com.xpp.iaas</groupId>
+      <artifactId>xpp-iaas-file</artifactId>
+      <version>0.0.2-RELEASE</version>
+      <classifier>api</classifier>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <!--文件名字-->
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <!--编译 Java 源代码-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!--在执行 mvn package 命令时，自动将当前项目的源代码打包成一个 .jar 文件。-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <!--表示这个插件会在 mvn package 生命周期阶段执行-->
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- 分环境打包: y/n -->
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <version.final>${version.current}-SNAPSHOT</version.final>
+        <repository.id>${project.distributionManagement.snapshotRepository.id}</repository.id>
+        <repository.url>${project.distributionManagement.snapshotRepository.url}</repository.url>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <!--mvn clean package -Ptest-->
+    <profile>
+      <id>test</id>
+      <properties>
+        <version.final>${version.current}-RELEASE</version.final>
+        <repository.id>${project.distributionManagement.repository.id}</repository.id>
+        <repository.url>${project.distributionManagement.repository.url}</repository.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <version.final>${version.current}-RELEASE</version.final>
+        <repository.id>${project.distributionManagement.repository.id}</repository.id>
+        <repository.url>${project.distributionManagement.repository.url}</repository.url>
+      </properties>
+    </profile>
+  </profiles>
+
+  <!--把自己打包jar上传的仓库-->
+  <!-- 分环境打包: y/n -->
+  <!--上传jar到仓库：打包后根据不同的环境，把当前项目jar,上传仓库的不同位置-->
+  <distributionManagement>
+    <!--正式：如果你的项目版本是：0.0.1-RELEASE 或 0.0.1（没有 SNAPSHOT），则使用 <repository> 地址。-->
+    <repository>
+      <id>releases</id>
+      <url>${nexus.location}/nexus/content/repositories/releases</url>
+    </repository>
+    <!--开发：果你的项目版本是：0.0.1-SNAPSHOT，则使用 <snapshotRepository> 配置的地址；-->
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>${nexus.location}/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+
+  <!--下载jar-->
+  <!--优先使用pom配置的仓库地址下载；如果没有配置就从setting.xml中配置的镜像配置的地址下载-->
+  <!--如果仓库有账号和密码；他在setting中的server标签配置；id数据一样作为绑定-->
+  <!--作用：告诉 Maven 去哪下载依赖（jar 包）-->
+  <!--私有库需要Nexus平台搭建-->
+  <!--私有仓库里的 jar 主要来自你们自己的项目构建产物，也可以是手动上传的第三方依赖，或者是代理远程仓库缓存下来的依赖。-->
+  <repositories>
+    <repository>
+      <!--true:Maven 会定期从 Nexus 等仓库拉取最新的 SNAPSHOT 版本-->
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <!--该仓库的唯一标识符，通常与 settings.xml 中的 <server> 对应-->
+      <id>nexus</id>
+      <!--仓库名称，仅供展示使用-->
+      <name>Public Repositories</name>
+      <!--仓库地址，${nexus.location} 是一个变量，在 <properties> 中定义为 http://10.0.3.31:8084，最终指向 Nexus 私有仓库地址-->
+      <url>${nexus.location}/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+</project>

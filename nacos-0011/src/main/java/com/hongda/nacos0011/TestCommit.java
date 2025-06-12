@@ -12,6 +12,8 @@ public class TestCommit {
       System.out.println("C测试提交");
       System.out.println("D测试提交");
 
+      System.out.println("第一次提交");
+
     }
 
 }

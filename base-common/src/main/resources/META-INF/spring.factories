@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xpp.gaia.boot.global.EnableGlobal,\
+com.xpp.gaia.boot.hook.EnableHook

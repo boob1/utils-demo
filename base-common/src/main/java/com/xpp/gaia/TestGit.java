@@ -11,4 +11,7 @@ public class TestGit {
     System.out.println("第一次提交");
   }
 
+  public  void test1(String[] args) {
+    System.out.println("A次提交");
+  }
 }

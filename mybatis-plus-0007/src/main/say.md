@@ -134,5 +134,6 @@ mybatis-plus的servive方法：批量保存：saveBatch其实还是一条一条�
 
  ### 应用
 ![img.png](resources/images/img_20.png)
-
+![img.png](img.png)
+![img_1.png](img_1.png)
 ## 18.2接受参数包装

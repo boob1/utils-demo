@@ -1,0 +1,15 @@
+server:
+  port: 8881
+
+
+xxl:  # 此处原配置“xx]:”存在格式错误，修正为合法键名格式
+  job:
+    accessToken: default_token  # 建议补充具体令牌值，如无则保留空值
+    admin:
+      addresses: http://192.168.49.1:8080/xxl-job-admin  # 修正地址后缺少的分隔符
+    executor:
+      appname: xxl-job-demo14  # 修正多余空格，规范应用名格式
+      address:  # 可填写执行器完整地址，如无则留空由ip:port组合
+      ip:  # 建议补充具体IP地址，如0.0.0.0表示绑定所有网卡
+      port: 9989
+      logretentiondays: 30  # 修正拼写错误（1og→log），明确日志保留天数

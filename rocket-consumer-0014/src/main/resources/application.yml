@@ -1,0 +1,52 @@
+server:
+  port: 8085
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  consumer1:
+    group: my-consumer-group
+    consume-thread-max: 64  # 最大消费线程数
+
+  consumer2:
+    group: user-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer3:
+    group: list-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer4:
+    group: map-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+  consumer5:
+    group: complex-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer6:
+    group: sync-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer7:
+    group: async-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer8:
+    group: oneway-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer9:
+    group: delay-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer10:
+    group: order-group
+    consume-thread-max: 32  # 最大消费线程数
+
+  consumer11:
+    group: tx-consumer-group
+    consume-thread-max: 32  # 最大消费线程数
+
+
+
+
+

@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/hongda?serverTimezone=GMT%2B8&useUnicode=true&useSSL=false&characterEncoding=utf-8
+  data:
+    redis:
+        host: localhost
+        port: 6379
+        password: 123456
+        database: 0
+        lettuce:
+          pool:
+            max-idle: 16
+            max-active: 32
+            min-idle: 8
+ #   修改代码自动启动
+    devtools:
+      restart:
+        enabled: true

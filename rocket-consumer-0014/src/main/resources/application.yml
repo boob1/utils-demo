@@ -39,12 +39,16 @@ rocketmq:
     consume-thread-max: 32  # 最大消费线程数
 
   consumer10:
-    group: order-group
+    group: shunXu-consumer-group
     consume-thread-max: 32  # 最大消费线程数
 
   consumer11:
     group: tx-consumer-group
     consume-thread-max: 32  # 最大消费线程数
+  consumer:
+    concurrent-group:
+      consume-thread-min: 5   # 最小线程数
+      consume-thread-max: 20  # 最大线程数
 
 
 

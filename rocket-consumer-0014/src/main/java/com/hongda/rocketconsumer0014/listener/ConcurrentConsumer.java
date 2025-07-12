@@ -1,18 +1,17 @@
 package com.hongda.rocketconsumer0014.listener;
 
-import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.annotation.ConsumeMode;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RocketMQMessageListener(
-        topic = "test-topic",
-        consumerGroup = "my-consumer-group"
+        topic = "concurrent-topic",
+        consumerGroup = "concurrent-group",
+        consumeMode = ConsumeMode.CONCURRENTLY  // 显式声明并发模式
 )
-public class MyConsumer implements RocketMQListener<String> {
-
+public class ConcurrentConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
         try {
@@ -20,6 +19,7 @@ public class MyConsumer implements RocketMQListener<String> {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        // 多线程并行处理
         System.out.println("线程" + Thread.currentThread().getId() + "处理消息: " + message);
     }
 }
